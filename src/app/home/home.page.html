@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,64 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-grid>
+      <ion-row>
+        <!-- <ion-col size="6" size-sm> -->
+          <ng-template *ngIf="save==0; then empty else notempty"></ng-template>
+
+          <!-- if title is empty -->
+          <ng-template #empty>
+            <ion-col size="6" size-sm>
+            </ion-col>
+          </ng-template>
+
+          <!-- if title is not empty -->
+          <ng-template #notempty>
+            <ion-col size="6" size-sm>
+              <ion-button routerLink="/detail" expand="full"><ion-icon name="list-outline"></ion-icon>Detail</ion-button>
+            </ion-col>
+            <ion-col size="6" size-sm>
+              <ion-button routerLink="/favorite" expand="full"><ion-icon name="heart-outline"></ion-icon> Favorite</ion-button>
+            </ion-col>
+          </ng-template>
+          <!-- <ion-button routerLink="/detail">Detail</ion-button>
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <ion-button routerLink="/favorite">Favorite</ion-button>
+        </ion-col> -->
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" size-sm>
+          Input Judul: 
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <ion-input type="text" [(ngModel)]="title"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" size-sm>
+          Input Tanggal: 
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <ion-input type="date" [(ngModel)]="date"> </ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6" size-sm>
+          Input Isi: 
+        </ion-col>
+        <ion-col size="6" size-sm>
+          <ion-textarea [(ngModel)]="note"> </ion-textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>    
+    <ion-button (click)="Input()" expand="full" color="success"><ion-icon name="save-outline"></ion-icon>Save</ion-button>
+    <router-module></router-module>
   </div>
 </ion-content>
